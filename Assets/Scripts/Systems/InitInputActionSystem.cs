@@ -25,7 +25,7 @@ namespace System {
         {
             if(context.performed)
             {
-                UnityEngine.Debug.Log(context.phase);
+                //UnityEngine.Debug.Log(context.phase);
             }
         }
     }

@@ -12,4 +12,12 @@ namespace Component {
     {
         public UnityEngine.Rigidbody2D Value;
     }
+
+    [Serializable]
+    public struct Camera
+    {
+        public UnityEngine.Camera Value;
+        public UnityEngine.Vector2 BottomLeft;
+        public UnityEngine.Vector2 TopRight;
+    }
 }

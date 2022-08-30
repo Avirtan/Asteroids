@@ -14,10 +14,12 @@ namespace Client
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
             _systems
+                .Add(new System.InitCameraSystem())
                 .Add(new System.InitEntitySystem())
                 .Add(new System.InitInputActionSystem())
                 .Add(new System.RotateSystem())
                 .Add(new System.MoveSystem())
+                .Add(new System.CheckPositionPlayerSystem())
 
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
