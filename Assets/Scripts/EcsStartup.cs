@@ -6,39 +6,54 @@ namespace Client
 {
     sealed class EcsStartup : MonoBehaviour
     {
-        EcsWorld _world;
-        EcsSystems _systems;
+        private EcsWorld _world;
+        private EcsSystems _update;
+        private EcsSystems _fixedUpdate;
 
-        void Start()
+        private void Start()
         {
             _world = new EcsWorld();
-            _systems = new EcsSystems(_world);
-            _systems
+            _update = new EcsSystems(_world);
+            _fixedUpdate = new EcsSystems(_world);
+            _update
+                .Add(new System.InitInputActionSystem())
                 .Add(new System.InitCameraSystem())
                 .Add(new System.InitEntitySystem())
-                .Add(new System.InitInputActionSystem())
-                .Add(new System.RotateSystem())
-                .Add(new System.MoveSystem())
-                .Add(new System.CheckPositionPlayerSystem())
-
-#if UNITY_EDITOR
-                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
-#endif
+                .Add(new System.UISystem())
                 .ConvertScene()
                 .Init();
+
+            _fixedUpdate
+               .Add(new System.RotateSystem())
+               .Add(new System.MoveSystem())
+               .Add(new System.CheckPositionPlayerSystem())
+#if UNITY_EDITOR
+               .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
+#endif
+               .Init();
         }
 
-        void Update()
+        private void Update()
         {
-            _systems?.Run();
+            _update?.Run();
         }
 
-        void OnDestroy()
+        private void FixedUpdate()
         {
-            if (_systems != null)
+            _fixedUpdate?.Run();
+        }
+
+        private void OnDestroy()
+        {
+            if (_update != null)
             {
-                _systems.Destroy();
-                _systems = null;
+                _update.Destroy();
+                _update = null;
+            }
+            if (_fixedUpdate != null)
+            {
+                _fixedUpdate.Destroy();
+                _fixedUpdate = null;
             }
             if (_world != null)
             {
