@@ -1,6 +1,7 @@
 using UnityEngine;
 using Leopotam.EcsLite;
 using Voody.UniLeo.Lite;
+using Leopotam.EcsLite.Di;
 
 namespace Client
 {
@@ -13,14 +14,15 @@ namespace Client
 
         private void Start()
         {
+            var screenCoodinate = new Service.ScreenCoordinate(Camera.main);
             _world = new EcsWorld();
             _update = new EcsSystems(_world);
             _fixedUpdate = new EcsSystems(_world, bulletPool);
             _update
                 .Add(new System.InitEntitySystem())
                 .Add(new System.InitInputActionSystem())
-                .Add(new System.InitCameraSystem())
                 .Add(new System.UISystem())
+                .Inject(screenCoodinate)
                 .ConvertScene()
                 .Init();
 
@@ -30,7 +32,7 @@ namespace Client
                .Add(new System.CheckPositionPlayerSystem())
                .Add(new System.CheckBulletPositionSystem())
                .Add(new System.AttackSystem())
-
+               .Inject(screenCoodinate)
 #if UNITY_EDITOR
                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
