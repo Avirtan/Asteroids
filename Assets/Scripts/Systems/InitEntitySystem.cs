@@ -4,7 +4,7 @@ using Component;
 namespace System {
     sealed class InitEntitySystem : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             EcsWorld world = systems.GetWorld();
             var filter = world.Filter<InitEntityEvent>().Inc<Entity>().End();
@@ -14,6 +14,7 @@ namespace System {
             {
                 ref Entity entityComponent = ref entityPool.Get(entity);
                 entityComponent.Value.IdEntity = entity;
+                entityComponent.Value.World = world;
                 initPool.Del(entity);
             }
         }

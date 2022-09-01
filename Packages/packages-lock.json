@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "com.leopotam.ecslite": {
-      "version": "https://github.com/voody2506/ecslite.git",
+      "version": "https://github.com/Leopotam/ecslite.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "438b839bc1d7fff5ccb2ba99b548f4ef9711f299"
+      "hash": "4ce5a38125c8786a02813020f2d9c296f8a9110e"
     },
     "com.leopotam.ecslite.unityeditor": {
       "version": "https://github.com/Leopotam/ecslite-unityeditor.git",

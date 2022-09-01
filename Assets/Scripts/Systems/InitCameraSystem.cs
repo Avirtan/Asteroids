@@ -4,7 +4,7 @@ using Component;
 namespace System {
     sealed class InitCameraSystem : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             EcsWorld world = systems.GetWorld();
             var filter = world.Filter<InitEntityEvent>().Inc<Camera>().End();

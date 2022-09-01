@@ -1,3 +1,4 @@
+using Leopotam.EcsLite;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,10 @@ namespace MonoBeh
 {
     public class Entity : MonoBehaviour
     {
-        [SerializeField] private int idEntity;
-        public int IdEntity { get => idEntity; set => idEntity = value; }
+        [SerializeField] protected int _idEntity;
+        protected EcsWorld _world;
+        public int IdEntity { get => _idEntity; set => _idEntity = value; }
+        public EcsWorld World { get => _world; set => _world = value; }
+
     }
 }

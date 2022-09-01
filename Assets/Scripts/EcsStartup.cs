@@ -6,19 +6,20 @@ namespace Client
 {
     sealed class EcsStartup : MonoBehaviour
     {
+        [SerializeField] Service.BulletPool bulletPool;
         private EcsWorld _world;
-        private EcsSystems _update;
-        private EcsSystems _fixedUpdate;
+        private IEcsSystems _update;
+        private IEcsSystems _fixedUpdate;
 
         private void Start()
         {
             _world = new EcsWorld();
             _update = new EcsSystems(_world);
-            _fixedUpdate = new EcsSystems(_world);
+            _fixedUpdate = new EcsSystems(_world, bulletPool);
             _update
+                .Add(new System.InitEntitySystem())
                 .Add(new System.InitInputActionSystem())
                 .Add(new System.InitCameraSystem())
-                .Add(new System.InitEntitySystem())
                 .Add(new System.UISystem())
                 .ConvertScene()
                 .Init();
@@ -27,6 +28,9 @@ namespace Client
                .Add(new System.RotateSystem())
                .Add(new System.MoveSystem())
                .Add(new System.CheckPositionPlayerSystem())
+               .Add(new System.CheckBulletPositionSystem())
+               .Add(new System.AttackSystem())
+
 #if UNITY_EDITOR
                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif

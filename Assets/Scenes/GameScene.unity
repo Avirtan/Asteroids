@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &444435480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 444435481}
+  - component: {fileID: 444435482}
+  m_Layer: 0
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &444435481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444435480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6833736, y: 1.394673, z: 0.052244235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &444435482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444435480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c22b385d0f9338429a35c80873b33f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 7605871241648490922, guid: 1269d8a8c3a8b144faf96fc2ee62ad7c, type: 3}
+  amountToPool: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -92.899994, y: 0}
+  m_AnchoredPosition: {x: -92.8999, y: 0}
   m_SizeDelta: {x: 145.1848, y: 42.2084}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &693644724
@@ -745,7 +792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357675467}
   - component: {fileID: 1357675468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,6 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c30f16d5b202449b7c440dc9002413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPool: {fileID: 444435482}
 --- !u!4 &1750136814
 Transform:
   m_ObjectHideFlags: 0
@@ -1202,7 +1250,7 @@ GameObject:
   - component: {fileID: 1760684885}
   - component: {fileID: 1760684886}
   - component: {fileID: 1760684887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1298,7 +1346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17a173cc8efedf64ca2dd9339541f2c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idEntity: 0
+  _idEntity: 0
 --- !u!114 &1760684882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,7 +1476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -92.899994, y: -42.5}
+  m_AnchoredPosition: {x: -92.8999, y: -42.5}
   m_SizeDelta: {x: 145.1848, y: 42.2084}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1831899035

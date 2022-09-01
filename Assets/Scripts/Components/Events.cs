@@ -6,5 +6,7 @@ namespace Component
     public struct InitEntityEvent { }
     [Serializable]
     public struct InitInputActionEvent { }
+    [Serializable]
+    public struct AttackEvent { }
 
 }

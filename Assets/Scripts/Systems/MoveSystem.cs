@@ -5,7 +5,7 @@ namespace System
 {
     sealed class MoveSystem : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             EcsWorld world = systems.GetWorld();
             var playerFilter = world.Filter<PlayerTag>().Inc<Rigidbody>().Inc<Transform>().Inc<MoveSpeed>().End();

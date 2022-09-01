@@ -5,7 +5,7 @@ namespace System
 {
     sealed class RotateSystem : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             EcsWorld world = systems.GetWorld();
             var playerFilter = world.Filter<PlayerTag>().Inc<Rigidbody>().Inc<RotateSpeed>().End();

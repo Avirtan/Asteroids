@@ -6,4 +6,6 @@ namespace Component
     public struct PlayerTag { }
     [Serializable]
     public struct MeteorTag { }
+    [Serializable]
+    public struct BulletTag { }
 }
