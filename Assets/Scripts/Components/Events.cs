@@ -8,5 +8,9 @@ namespace Component
     public struct InitInputActionEvent { }
     [Serializable]
     public struct AttackEvent { }
-
+    [Serializable]
+    public struct DestroyEnemyEvent
+    {
+        public MonoBeh.Entity Entity;
+    }
 }

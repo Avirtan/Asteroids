@@ -8,6 +8,7 @@ namespace Client
     sealed class EcsStartup : MonoBehaviour
     {
         [SerializeField] Service.BulletPool bulletPool;
+        [SerializeField] Service.SaucerPool saucerPool;
         private EcsWorld _world;
         private IEcsSystems _update;
         private IEcsSystems _fixedUpdate;
@@ -17,22 +18,25 @@ namespace Client
             var screenCoodinate = new Service.ScreenCoordinate(Camera.main);
             _world = new EcsWorld();
             _update = new EcsSystems(_world);
-            _fixedUpdate = new EcsSystems(_world, bulletPool);
+            _fixedUpdate = new EcsSystems(_world);
             _update
                 .Add(new System.InitEntitySystem())
                 .Add(new System.InitInputActionSystem())
                 .Add(new System.UISystem())
+                .Add(new System.TimeSystem())
                 .Inject(screenCoodinate)
                 .ConvertScene()
                 .Init();
 
             _fixedUpdate
-               .Add(new System.RotateSystem())
-               .Add(new System.MoveSystem())
+               .Add(new System.MoveAndRotateSystem())
                .Add(new System.CheckPositionPlayerSystem())
                .Add(new System.CheckBulletPositionSystem())
                .Add(new System.AttackSystem())
-               .Inject(screenCoodinate)
+               .Add(new System.SaucerSpawnSystem())
+               .Add(new System.FollowSystem())
+               .Add(new System.DestroyEnemySystem())
+               .Inject(screenCoodinate, bulletPool, saucerPool)
 #if UNITY_EDITOR
                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif

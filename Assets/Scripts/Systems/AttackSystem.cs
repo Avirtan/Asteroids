@@ -1,15 +1,17 @@
 using Leopotam.EcsLite;
 using Component;
 using Service;
+using Leopotam.EcsLite.Di;
 
 namespace System
 {
     sealed class AttackSystem : IEcsRunSystem
     {
+        readonly EcsCustomInject<BulletPool> _bulletPool = default;
+
         public void Run(IEcsSystems systems)
         {
             EcsWorld world = systems.GetWorld();
-            var bulletPool = systems.GetShared<BulletPool>();
             var playerFilter = world.Filter<PlayerTag>().Inc<Transform>().End();
             var attackEventFilter = world.Filter<AttackEvent>().End();
             var transformPool = world.GetPool<Transform>();
@@ -21,7 +23,7 @@ namespace System
                 {
                     ref Transform transform = ref transformPool.Get(playerEntity);
                     var positionPlayer = transform.Value.position;
-                    var bullet = bulletPool.GetPooledObject();
+                    var bullet = _bulletPool.Value.GetPooledObject();
                     bullet.transform.position = positionPlayer + transform.Value.up * 0.3f;
                     bullet.gameObject.SetActive(true);
                     bullet.Shot(transform.Value.up);

@@ -1,3 +1,4 @@
+using Component;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,17 @@ namespace MonoBeh
         public void Shot(Vector3 dir)
         {
             _rigidbody.AddForce(dir * speed);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            var entityEnemy = collision.gameObject.GetComponent<Entity>();
+            var entityDestroy = _world.NewEntity();
+            var destroyEnemyEventPool = _world.GetPool<DestroyEnemyEvent>();
+            destroyEnemyEventPool.Add(entityDestroy);
+            ref DestroyEnemyEvent destroyEvent = ref destroyEnemyEventPool.Get(entityDestroy);
+            destroyEvent.Entity = entityEnemy;
+            gameObject.SetActive(false);
         }
     }
 }

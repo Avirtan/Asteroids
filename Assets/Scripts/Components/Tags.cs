@@ -10,4 +10,6 @@ namespace Component
     public struct BulletTag { }
     [Serializable]
     public struct SaucerTag { }
+    [Serializable]
+    public struct SaucerSpawnerTag { }
 }

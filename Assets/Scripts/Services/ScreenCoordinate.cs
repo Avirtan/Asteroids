@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Util;
 
 namespace Service
 {
@@ -9,6 +10,7 @@ namespace Service
         private float _maxX;
         private float _minY;
         private float _minX;
+        private float offsetSpawnEnemy = 1f;
 
         public float MaxPositionX { get => _maxX; }
         public float MaxPositionY { get => _maxY; }
@@ -25,10 +27,15 @@ namespace Service
             _minY = bottomLeft.y;
         }
 
-        public bool CheckOutScreen(Vector2 position)
+        public bool CheckOutScreen(Vector2 position, bool useOffset = false)
         {
-            if (position.x < _minX || position.x > _maxX ||
-                position.y < _minY || position.y > _maxY)
+            var offset = 0f;
+            if(useOffset)
+            {
+                offset = offsetSpawnEnemy;
+            }
+            if (position.x < _minX - offset || position.x > _maxX + offset ||
+                position.y < _minY - offset || position.y > _maxY + offset)
             {
                 return true;
             }
@@ -63,9 +70,38 @@ namespace Service
             }
         }
 
+
         public string GetCurrentCoordinate(Vector3 position)
         {
             return String.Format("X:{0:#.0} Y:{1:#.0}", position.x + _maxX, position.y + _maxY);
+        }
+
+        public Vector2 RandomCoordinateOutScreen()
+        {
+            var rndX = (Side)UnityEngine.Random.Range(0, 4);
+            var positionX = 0f;
+            var positionY = 0f;
+            switch (rndX)
+            {
+                case Side.LEFT:
+                    positionX = _minX - offsetSpawnEnemy;
+                    positionY = UnityEngine.Random.Range(_minY, _maxY);
+                    break;
+                case Side.TOP:
+                    positionX = UnityEngine.Random.Range(_minX, _maxX);
+                    positionY = _maxY + offsetSpawnEnemy;
+                    break;
+                case Side.RIGHT:
+                    positionX = _maxX + offsetSpawnEnemy;
+                    positionY = UnityEngine.Random.Range(_minY, _maxY);
+                    break;
+                case Side.BOTTOM:
+                    positionX = UnityEngine.Random.Range(_minX, _maxX);
+                    positionY = _minY - offsetSpawnEnemy;
+                    break;
+            }
+            var position = new Vector2(positionX, positionY);
+            return position;
         }
     }
 }
