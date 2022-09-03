@@ -30,6 +30,7 @@ namespace Client
                 .Add(new System.CheckMeteorPositionSystem())
                 .Add(new System.CheckPositionPlayerSystem())
                 .Add(new System.CheckBulletPositionSystem())
+                .Add(new System.UpdateGameStateSystem())
                 .Inject(screenCoodinate)
                 .ConvertScene()
                 .Init();

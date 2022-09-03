@@ -18,4 +18,9 @@ namespace Component
     {
         public float Value;
     }
+    [Serializable]
+    public struct UpdateScoreUIEvent
+    {
+        public float Value;
+    }
 }

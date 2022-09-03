@@ -29,6 +29,18 @@ namespace System
                     panel.Coordinate.text = _screenCoordinate.Value.GetCurrentCoordinate(transform.Value.position);
                 }
             }
+            var updateScoreFilter = world.Filter<UpdateScoreUIEvent>().End();
+            var updateScoreEventPool = world.GetPool<UpdateScoreUIEvent>();
+            foreach (int entity in updateScoreFilter)
+            {
+                ref UpdateScoreUIEvent updateScoreEvent = ref updateScoreEventPool.Get(entity);
+                foreach (int panelEntity in uiFilter)
+                {
+                    ref PanelState panel = ref textPool.Get(panelEntity);
+                    panel.Score.text = updateScoreEvent.Value.ToString();
+                }
+                world.DelEntity(entity);
+            }
         }
     }
 }
