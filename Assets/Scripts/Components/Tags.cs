@@ -12,4 +12,6 @@ namespace Component
     public struct SaucerTag { }
     [Serializable]
     public struct SaucerSpawnerTag { }
+    [Serializable]
+    public struct MeteorSpawnerTag { }
 }

@@ -76,7 +76,7 @@ namespace Service
             return String.Format("X:{0:#.0} Y:{1:#.0}", position.x + _maxX, position.y + _maxY);
         }
 
-        public Vector2 RandomCoordinateOutScreen()
+        public (Vector2, Side) RandomCoordinateOutScreen()
         {
             var rndX = (Side)UnityEngine.Random.Range(0, 4);
             var positionX = 0f;
@@ -101,7 +101,7 @@ namespace Service
                     break;
             }
             var position = new Vector2(positionX, positionY);
-            return position;
+            return (position, rndX);
         }
     }
 }

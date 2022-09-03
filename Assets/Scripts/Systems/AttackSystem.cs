@@ -23,7 +23,7 @@ namespace System
                 {
                     ref Transform transform = ref transformPool.Get(playerEntity);
                     var positionPlayer = transform.Value.position;
-                    var bullet = _bulletPool.Value.GetPooledObject();
+                    var bullet = _bulletPool.Value.GetPooledObject() as MonoBeh.Bullet;
                     bullet.transform.position = positionPlayer + transform.Value.up * 0.3f;
                     bullet.gameObject.SetActive(true);
                     bullet.Shot(transform.Value.up);

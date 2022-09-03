@@ -6,16 +6,16 @@ using System.Linq;
 
 namespace Service
 {
-    public class BulletPool : MonoBehaviour
+    public class Pool : MonoBehaviour
     {
-        [SerializeField] private List<Bullet> pooledObjects;
-        [SerializeField] private Bullet objectToPool;
+        [SerializeField] private List<Entity> pooledObjects;
+        [SerializeField] private Entity objectToPool;
         [SerializeField] private int amountToPool;
 
         void Start()
         {
-            pooledObjects = new List<Bullet>();
-            Bullet obj;
+            pooledObjects = new List<Entity>();
+            Entity obj;
             for (int i = 0; i < amountToPool; i++)
             {
                 obj = Instantiate(objectToPool, transform);
@@ -24,7 +24,7 @@ namespace Service
             }
         }
 
-        public Bullet GetPooledObject()
+        public Entity GetPooledObject()
         {
             for (int i = 0; i < pooledObjects.Count; i++)
             {

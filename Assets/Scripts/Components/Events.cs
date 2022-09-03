@@ -13,4 +13,9 @@ namespace Component
     {
         public MonoBeh.Entity Entity;
     }
+    [Serializable]
+    public struct UpdateScoreEvent
+    {
+        public float Value;
+    }
 }

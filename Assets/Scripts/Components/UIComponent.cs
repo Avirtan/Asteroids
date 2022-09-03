@@ -7,5 +7,6 @@ namespace Component {
        public TMPro.TextMeshProUGUI Rotate;
        public TMPro.TextMeshProUGUI Speed;
        public TMPro.TextMeshProUGUI Coordinate;
+       public TMPro.TextMeshProUGUI Score;
     }
 }
