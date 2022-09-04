@@ -27,6 +27,8 @@ namespace Component
         public float Value;
     }
     [Serializable]
+    public struct CooldownLaserEvent { }
+    [Serializable]
     public struct StarGameEvent { }
     [Serializable]
     public struct GameOverEvent { }

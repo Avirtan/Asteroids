@@ -12,4 +12,10 @@ namespace Component
     {
         public float Value;
     }
+    [Serializable]
+    public struct LaserComponent
+    {
+        public UnityEngine.LineRenderer LineRenderer;
+        public float Count;
+    }
 }

@@ -34,6 +34,7 @@ namespace Client
                 .Add(new System.UpdateGameStateSystem())
                 .Add(new System.StartGameSystem())
                 .Add(new System.GameOverSystem())
+                .Add(new System.CheckLaserCountSystem())
                 .Inject(screenCoodinate, _gameData)
                 .ConvertScene()
                 .Init();

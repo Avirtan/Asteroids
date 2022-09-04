@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   Player: {fileID: 2282029539355215064, guid: 9e2358c3a7e99a34a8f1e6429cb749c5, type: 3}
+  MaxLaserCount: 2
+  CooldownLaser: 3

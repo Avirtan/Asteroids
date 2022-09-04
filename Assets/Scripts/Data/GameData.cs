@@ -7,6 +7,7 @@ namespace Data
     public class GameData : ScriptableObject
     {
         public Entity Player;
-
+        public int MaxLaserCount;
+        public float CooldownLaser;
     }
 }
