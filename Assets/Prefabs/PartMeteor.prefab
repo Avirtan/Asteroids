@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5770029811239015637}
   - component: {fileID: 6133859445752914942}
   - component: {fileID: 2554726252488313321}
+  - component: {fileID: 946470317783961469}
   m_Layer: 8
   m_Name: PartMeteor
   m_TagString: Untagged
@@ -223,5 +224,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc6011298bbe35d45bc5788f9920daf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &946470317783961469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974933851271274743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d6d11643960e44fa79a4e1af9d86a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

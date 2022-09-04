@@ -7,8 +7,9 @@ namespace Client
 {
     sealed class EcsStartup : MonoBehaviour
     {
+        [SerializeField] Data.GameData _gameData;
         [SerializeField] Service.BulletPool _bulletPool;
-        [SerializeField] Service.SaucerPool _saucerPool;
+        [SerializeField] Service.UFOPool _saucerPool;
         [SerializeField] Service.MeteorPool _meteorPool;
         [SerializeField] Service.PartMeteorPool _partMeteorPool;
 
@@ -31,18 +32,20 @@ namespace Client
                 .Add(new System.CheckPositionPlayerSystem())
                 .Add(new System.CheckBulletPositionSystem())
                 .Add(new System.UpdateGameStateSystem())
-                .Inject(screenCoodinate)
+                .Add(new System.StartGameSystem())
+                .Add(new System.GameOverSystem())
+                .Inject(screenCoodinate, _gameData)
                 .ConvertScene()
                 .Init();
 
             _fixedUpdate
                .Add(new System.MoveAndRotateSystem())
                .Add(new System.AttackSystem())
-               //.Add(new System.SaucerSpawnSystem())
+               .Add(new System.UFOSpawnSystem())
                .Add(new System.MeteorSpawnSystem())
                .Add(new System.FollowSystem())
                .Add(new System.DestroyEnemySystem())
-               .Inject(screenCoodinate, _bulletPool, _saucerPool, _meteorPool, _partMeteorPool)
+               .Inject(screenCoodinate, _bulletPool, _saucerPool, _meteorPool, _partMeteorPool, _gameData)
 #if UNITY_EDITOR
                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif

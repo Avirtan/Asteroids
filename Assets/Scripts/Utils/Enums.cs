@@ -8,4 +8,10 @@ namespace Util {
         RIGHT = 2,
         BOTTOM = 3,
     }
+
+    public enum TypeAttack
+    {
+        BULLET = 0,
+        LASER = 1,
+    }
 }

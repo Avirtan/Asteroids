@@ -5,26 +5,28 @@ using Leopotam.EcsLite.Di;
 
 namespace System
 {
-    sealed class SaucerSpawnSystem : IEcsRunSystem
+    sealed class MeteorSpawnSystem : IEcsRunSystem
     {
-        readonly EcsCustomInject<SaucerPool> _saucerPool = default;
+        readonly EcsCustomInject<MeteorPool> _meteorPool = default;
         readonly EcsCustomInject<ScreenCoordinate> _screenCoordinate = default;
 
         public void Run(IEcsSystems systems)
         {
             EcsWorld world = systems.GetWorld();
-            var saucerSpawnerFilter = world.Filter<SaucerSpawnerTag>().Inc<TimeDelay>().End();
+            var saucerSpawnerFilter = world.Filter<MeteorSpawnerTag>().Inc<TimeDelay>().Exc<IsPause>().End();
             var timeDelayPool = world.GetPool<TimeDelay>();
             foreach (int entity in saucerSpawnerFilter)
             {
                 ref var timeDelay = ref timeDelayPool.Get(entity);
                 timeDelay.Value += UnityEngine.Time.deltaTime;
-                if(timeDelay.Value > 3f)
+                if(timeDelay.Value > 1f)
                 {
                     timeDelay.Value = 0;
-                    var saucer = _saucerPool.Value.GetPooledObject();
-                    saucer.gameObject.SetActive(true);
-                    saucer.transform.position = _screenCoordinate.Value.RandomCoordinateOutScreen().Item1;
+                    var meteor = _meteorPool.Value.GetPooledObject() as MonoBeh.Meteor;
+                    meteor.gameObject.SetActive(true);
+                    var (position, side) = _screenCoordinate.Value.RandomCoordinateOutScreen();
+                    meteor.transform.position = position;
+                    meteor.MoveMeteor(side, _screenCoordinate.Value);
                 }
             }
         }

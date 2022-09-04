@@ -1,6 +1,6 @@
 namespace MonoBeh
 {
-    public class Saucer : Entity
+    public class UFO : Entity
     {
 
     }

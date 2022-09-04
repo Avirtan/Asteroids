@@ -8,5 +8,6 @@ namespace Component {
        public TMPro.TextMeshProUGUI Speed;
        public TMPro.TextMeshProUGUI Coordinate;
        public TMPro.TextMeshProUGUI Score;
+       public MonoBeh.GameOverPanel GameOverPanel;
     }
 }

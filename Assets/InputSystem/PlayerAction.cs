@@ -53,6 +53,15 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Laser"",
+                    ""type"": ""Value"",
+                    ""id"": ""5a1cfa6f-7081-4e06-b286-6044ca790d6b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,17 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfb48d5f-3172-4247-8a9c-aa16c0fefbbe"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Laser"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -133,6 +153,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_Laser = m_Player.FindAction("Laser", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -195,6 +216,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_Laser;
     public struct PlayerActions
     {
         private @PlayerAction m_Wrapper;
@@ -202,6 +224,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @Laser => m_Wrapper.m_Player_Laser;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -220,6 +243,9 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @Laser.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaser;
+                @Laser.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaser;
+                @Laser.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaser;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -233,6 +259,9 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Laser.started += instance.OnLaser;
+                @Laser.performed += instance.OnLaser;
+                @Laser.canceled += instance.OnLaser;
             }
         }
     }
@@ -251,5 +280,6 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnLaser(InputAction.CallbackContext context);
     }
 }

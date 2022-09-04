@@ -40,7 +40,7 @@ namespace System
                                 partMeteor.MoveMeteor(rigidbody.Value.velocity);
                             }
                             break;
-                        case MonoBeh.Saucer:
+                        case MonoBeh.UFO:
                             updateScoreEvent.Value = 15;
                             break;
                         case MonoBeh.PartMeteor:
@@ -49,8 +49,8 @@ namespace System
                         default:
                             break;
                     }
-
                     transform.Value.gameObject.SetActive(false);
+                    //world.DelEntity(enemyEntity.IdEntity);
                 }
                 world.DelEntity(entity);
             }

@@ -9,9 +9,13 @@ namespace Component
     [Serializable]
     public struct BulletTag { }
     [Serializable]
-    public struct SaucerTag { }
+    public struct UFOTag { }
     [Serializable]
-    public struct SaucerSpawnerTag { }
+    public struct UFOSpawnerTag { }
     [Serializable]
     public struct MeteorSpawnerTag { }
+    [Serializable]
+    public struct PoolTag { }
+    [Serializable]
+    public struct EnemyTag { }
 }

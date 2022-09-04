@@ -7,4 +7,6 @@ namespace Component
     {
         public float Score;
     }
+    [Serializable]
+    public struct IsPause { }
 }

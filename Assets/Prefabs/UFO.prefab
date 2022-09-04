@@ -20,8 +20,9 @@ GameObject:
   - component: {fileID: 3634188159240397328}
   - component: {fileID: 37817796549152769}
   - component: {fileID: 3371729156736351417}
+  - component: {fileID: 6065500290775407472}
   m_Layer: 8
-  m_Name: Saucer
+  m_Name: UFO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,5 +237,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce79b7e37c831164a9940e2f203fb22d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6065500290775407472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971595762019704775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d6d11643960e44fa79a4e1af9d86a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

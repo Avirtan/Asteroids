@@ -12,7 +12,7 @@ namespace System
         {
             EcsWorld world = systems.GetWorld();
             var playerFilter = world.Filter<PlayerTag>().Inc<Transform>().End();
-            var saucerFilter = world.Filter<SaucerTag>().Inc<Rigidbody>().End();
+            var saucerFilter = world.Filter<UFOTag>().Inc<Rigidbody>().End();
             var transformPool = world.GetPool<Transform>();
             var moveSpeedPool = world.GetPool<MoveSpeed>();
             var rigidbodyPool = world.GetPool<Rigidbody>();
